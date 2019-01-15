@@ -1,12 +1,15 @@
 from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
+from flask_debugtoolbar import DebugToolbarExtension
 app = Flask(__name__)
 
 app.config.from_object('config')
 
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
+toolbar = DebugToolbarExtension(app)
+
 
 @app.errorhandler(404)
 def not_found(error):

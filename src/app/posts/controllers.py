@@ -10,7 +10,7 @@ mod_post = Blueprint('posts',__name__)
 @mod_post.route('/')
 def post_index():
     posts = Post.query.all()
-    return jsonify(json_list=[p.serialize for p in posts])
+    return render_template('posts/index.html', posts = posts)
 @mod_post.route('/<int:id>', methods=['GET'])
 def post_show(id):
     post = Post.query.get(id)
